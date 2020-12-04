@@ -59,6 +59,20 @@
 
      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/board/css/base.css"/>
 
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5fb72604a1d54c18d8eb7794/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -69,22 +83,40 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__cart">
-          <div class="offcanvas__cart__item">
-              <a href="mypage" style="color: black;"><img src="" alt="">마이페이지</a>
+          <div class="offcanvas__cart__item">  
+              <c:choose>
+                <c:when test="${empty sessionScope.loginId}">
+                </c:when>
+              	<c:when test="${sessionScope.loginId eq 'admin'}">
+                	<a href="adminpage" style="color: black;"><img src="" alt="">관리자페이지</a>
+                </c:when>
+                <c:otherwise>
+                	<a href="mypage" style="color: black;"><img src="" alt="">마이페이지</a>                              	
+                </c:otherwise>
+              </c:choose>
           </div>
-            <div class="offcanvas__cart__links">
-                <a href="#"><img src="resources/img/icon/heart.png" alt=""></a>
-                <a href="#" class="search-switch"><img src="resources/img/icon/search.png" alt=""></a>
-            </div>
+          <div class="header__top__right__links">
+          	<c:if test="${!empty sessionScope.loginId}">	
+         		<div class="arlam" style="font-size: 3px; background-color: rgb(255, 145, 0); width: 15px; height: 15px; color: white;">10</div>
+         		<img src="resources/img/hero/icon.jpg" style="width: 40%;" alt="none"/>
+         	</c:if>
+          	<a href="#" class="search-switch" style="margin-left: 10px;"><img src="resources/img/icon/search.png" alt=""></a>
+          </div>
         </div>
         <div class="offcanvas__logo">
-            <a href="goindex"><img src="resources/img/멍이냥 로고2.png" width="150px" alt=""></a>
+            <a href="index"><img src="resources/img/멍이냥 로고2.png" width="150px" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__option">
             <ul>
+              <c:if test="${empty sessionScope.loginId}">
               <li><a href="register">회원가입</a></li>
               <li><a href="login">로그인</a></li>
+              </c:if>
+              <c:if test="${!empty sessionScope.loginId}">
+              	<li><a href="register">회원가입</a></li>
+              	<li><a href="logout">로그아웃</a></li>
+              </c:if>
             </ul>
         </div>
     </div>
@@ -99,21 +131,39 @@
                       <div class="header__top__inner">
                           <div class="header__top__left">
                               <ul>
-                                  <li><a href="register">회원가입</a></li>
-                                  <li><a href="login">로그인</a></li>
+                              	<c:if test="${empty sessionScope.loginId}">
+              						<li><a href="register">회원가입</a></li>
+             						<li><a href="login">로그인</a></li>
+              					</c:if>
+              					<c:if test="${!empty sessionScope.loginId}">
+              						<li><a href="register">회원가입</a></li>
+              						<li><a href="logout">로그아웃</a></li>
+              					</c:if>
                               </ul>
                           </div>
                             <div class="header__logo">
-                                <a href="goindex"><img src="resources/img/멍이냥 로고2.png" width="200px" alt=""></a>
+                                <a href="index"><img src="resources/img/멍이냥 로고2.png" width="200px" alt=""></a>
                             </div>
                             <div class="header__top__right" style=" margin-top:-17px;">
                               <div class="header__top__right__cart" >
-                                  <a href="mypage" style="color: black;"><img src="" alt="">마이페이지</a>
+                              	<c:choose>
+                					<c:when test="${empty sessionScope.loginId}">
+                					</c:when>
+              						<c:when test="${sessionScope.loginId eq 'admin'}">
+                						<a href="adminpage" style="color: black;"><img src="" alt="">관리자페이지</a>
+               					 	</c:when>
+                					<c:otherwise>
+                						<a href="mypage" style="color: black;"><img src="" alt="">마이페이지</a>                              	
+                					</c:otherwise>
+              					</c:choose>
+                              	
                               </div>
                                 <div class="header__top__right__links">
-                                  <div class="arlam" style="font-size: 3px; background-color: rgb(255, 145, 0); width: 15px; height: 15px; color: white;">10</div>
-                                  <img src="resources/img/hero/icon.jpg" style="width: 40%;" alt="none"/>
-                                  <a href="#" class="search-switch" style="margin-left: 10px;"><img src="resources/img/icon/search.png" alt=""></a>
+                                	<c:if test="${!empty sessionScope.loginId}">	
+                                  		<div class="arlam" style="font-size: 3px; background-color: rgb(255, 145, 0); width: 15px; height: 15px; color: white;">10</div>
+                                  		<img src="resources/img/hero/icon.jpg" style="width: 40%;" alt="none"/>
+                                	</c:if>
+                                  	<a href="#" class="search-switch" style="margin-left: 10px;"><img src="resources/img/icon/search.png" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +178,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="index">홈</a></li>
-                            <li><a href="intro">소개</a></li>
+                            <li><a href="멍이냥">소개</a></li>
                             <li><a href="hospital">병원</a>
                             <li><a href="shop">스토어</a>
                             <ul class="dropdown">
@@ -165,18 +215,18 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">
                             <div class="hero__text">
-                                <h2>Dr.멍이냥</h2>
+                                <h2 style="font-size:35px;">Dr.멍이냥에서 선사하는 편안한 서비스!</h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero__item set-bg" data-setbg="resources/img/hero/hero-1.jpg">
+            <div class="hero__item set-bs2" data-setbg="resources/img/hero/바탕_로고1.jpg">
                 <div class="container">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">
                             <div class="hero__text">
-                                <h2>반려동물 과 함께 하는 모든 경험!!</h2>
+                                <h2 style="font-size:35px;">반려동물과 함께 하는 모든 경험!</h2>
                             </div>
                         </div>
                     </div>
@@ -410,7 +460,7 @@
           <div class="area_video">
              
               <div class="video_box">
-                  <iframe id="videoPlayer" width="400" height="330" src="https://www.youtube.com/embed/JKjWAZKXJTw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                  <iframe id="videoPlayer" width="400" height="330" src="https://www.youtube.com/embed/BFzByqkUh7A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
               </div>
               
           </div>
@@ -431,41 +481,41 @@
                     <div class="instagram__text">
                         <div class="section-title">
                             <span>Follow us on instagram</span>
-                            <h2>Sweet moments are saved as memories.</h2>
+                            <h2>Always remember to have fun with your pets</h2>
                         </div>
-                        <h5><i class="fa fa-instagram"></i> @sweetcake</h5>
+                        <h5><i class="fa fa-instagram"></i> @dr_dog&cats</h5>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                             <div class="instagram__pic">
-                                <img src="resources/img/instagram/instagram-1.jpg" alt="">
+                                <img src="resources/img/instagram/cat1.jpg" alt="">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                             <div class="instagram__pic middle__pic">
-                                <img src="resources/img/instagram/instagram-2.jpg" alt="">
+                                <img src="resources/img/instagram/dog2.png" alt="">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                             <div class="instagram__pic">
-                                <img src="resources/img/instagram/instagram-3.jpg" alt="">
+                                <img src="resources/img/instagram/cat2.png" alt="">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                             <div class="instagram__pic">
-                                <img src="resources/img/instagram/instagram-4.jpg" alt="">
+                                <img src="resources/img/instagram/catanddog.jpg" alt="">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                             <div class="instagram__pic middle__pic">
-                                <img src="resources/img/instagram/instagram-5.jpg" alt="">
+                                <img src="resources/img/instagram/dog1.jpeg" alt="">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-6">
                             <div class="instagram__pic">
-                                <img src="resources/img/instagram/instagram-3.jpg" alt="">
+                                <img src="resources/img/instagram/dogandcat.jpg" alt="">
                             </div>
                         </div>
                     </div>
