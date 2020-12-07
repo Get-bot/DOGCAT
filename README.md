@@ -24,6 +24,8 @@ Dr.멍이냥
   + Github URL : https://github.com/Get-bot/DOGCAT/
   ![메인페이지](https://user-images.githubusercontent.com/67552880/101337915-9edb1900-38bf-11eb-9fbb-44dadfef77d1.JPG)
   
+  ![반응형메인](https://user-images.githubusercontent.com/67552880/101338300-21fc6f00-38c0-11eb-8203-c897caa34df8.JPG)
+   + 반응형 웹페이지
 ***
 구현서비스
 ----------
@@ -35,9 +37,10 @@ Dr.멍이냥
    + 사진업로드시 썸네일 표시.
 ![일반게시판](https://user-images.githubusercontent.com/67552880/101338308-258ff600-38c0-11eb-9fe0-44a62cf156c3.JPG)
 
+![댓글테스트](https://user-images.githubusercontent.com/67552880/101338288-1e68e800-38c0-11eb-8a35-571470a55cb2.JPG)
    + 게시물은 페이징 처리 하여 10개씩 불러오게 구현.
    + 상세 화면 댓글의 경우 Ajax 처리를 통해 DB 저장 하였고, 댓글DB를 가져와 댓글 리스트를 구현.
-   
+   + 댓글기능 Ajax 이용하여 실시간 출력 삭제 처리도 동일하게 적용.
  ***
   2. 회원가입
   
